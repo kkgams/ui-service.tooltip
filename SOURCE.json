@@ -5,12 +5,21 @@
   "source_worktree_status": [],
   "repository": "ui-service.tooltip",
   "files_sha256": {
-    ".github/workflows/verify.yml": "b737a9f83062bdb3437455e7abab0362ee806c4663fe80af564ea77a353765b3",
+    ".github/workflows/release.yml": "389609993160480e4ff9a918e5ce91c2967207b3120cff633902d9c657e30b39",
+    ".gitignore": "eb23201bf8045bae97d6f115436fbeceb52a080b218644bf1b15f92b9da8dd4e",
     "CONTEXT.md": "8f5547b4890fde5d970da98ef82ba7a2d79d4748a67f505bc5a224e00b7db2bf",
-    "LICENSING.md": "0bddd694c9d8b704519bf4b02a97cb8e0896867f1e102c3b6849c9088eb1f830",
-    "README.md": "66f290a8017945c5fb7c1e24cbf6e4907640bab3a5be38d48898f12d0d047297",
-    "package.json": "58b93b95f7464b9ea4c2b8327dbbcbf7ee7dbea605003d5f663fa7439e178e39",
-    "scripts/verify.mjs": "10c90f89f8021c72c34e95acd0fdda66d313e9f941da9419f2c31e2775b695da",
-    "src/ui-plugins/tooltip.js": "1622fbc5d8c51fbaff9a9bfb162d8cbdd84f4330d5fb68080819651a668bb3d0"
-  }
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "LICENSING.md": "d4fd2edc5d99638f92d514cfa5c210d893e65f109a3640717eec4978ad2f849b",
+    "NOTICE": "c16e9c21ff4f6c6b70860c93b23df6832f047819551a662b9615945af8024355",
+    "NOTICE-EVIDENCE.json": "ab5aea5153eb77d0ac962ab116af0076d85927c9287bfca68e33d43473832d8b",
+    "PUBLISHING.md": "bd53609e046de8dffc3d281d2bff686cdd58439bf853617b0c2fde0478e63458",
+    "README.md": "283f00732d3383d8c691af6b067709478c3b911f11fb5edba18ce54563ebb714",
+    "package.json": "1a7ae1c629fafd19b0dfc5b0927f8d0d8a1ad09121a464f720ae88e994b138cf",
+    "release.json": "23faff342d5c97010c4f11d009ef2c0e20e9a789817ec7779e90ca6cf2ab7176",
+    "scripts/release.py": "45e25fd41691c02c8487ac9365cd74e5cb3c4ea8f602005ab764438e25b90be8",
+    "scripts/verify.mjs": "daa8e53ebcc205d985bedbcb337475d206b09ee998456f5c0f2ea28f77ff42fa",
+    "src/ui-plugins/tooltip.js": "1622fbc5d8c51fbaff9a9bfb162d8cbdd84f4330d5fb68080819651a668bb3d0",
+    "test/test_release.py": "330586a32413735fdaf28df1071ff8ddd16a7b020fdfa1af92849a277faf80da"
+  },
+  "publication_preparation_source_revision": "ca48dbf190aa66e948a04d2f82a624295b7b6464"
 }

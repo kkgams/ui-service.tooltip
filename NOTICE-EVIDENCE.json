@@ -1,0 +1,58 @@
+{
+  "files_sha256": {
+    "src/ui-plugins/tooltip.js": "1622fbc5d8c51fbaff9a9bfb162d8cbdd84f4330d5fb68080819651a668bb3d0"
+  },
+  "limits": "No universal plagiarism search or legal ownership certification. Follow-history can end at file creation/copy and cannot establish upstream import version. Generated package metadata is not source provenance.",
+  "scope": "13 entry-source closures from packaging/ecosystem/ui.py (12 JavaScript Units + theme.the98); Host imports and sibling Project Units excluded. No code changes or wholesale relicensing.",
+  "source_commit": "ca48dbf190aa66e948a04d2f82a624295b7b6464",
+  "unit": {
+    "confidence": "moderate: Git attribution and closure scan; no affirmative proof every line is original",
+    "evidence": [
+      "Static import/asset closure, header/vendoring signal scan, git --follow and line-porcelain blame recorded in sources."
+    ],
+    "excluded_host_imports": [],
+    "findings": "No identifiable copied third-party header, npm import, vendored library, inline artwork, remote fetch or bundled font found in Unit closure. Git authorship is not proof of copyright ownership.",
+    "kind": "ui-service",
+    "licenses": {
+      "gams_authored_code": "Apache-2.0 (owner decision; installation by parent generator pending)",
+      "third_party": []
+    },
+    "name": "ui-service.tooltip",
+    "notices": [],
+    "release_blockers": [],
+    "sources": [
+      {
+        "blame_authors": [
+          "Rom\u0101ns Pota\u0161ovs"
+        ],
+        "earliest_followed_change": {
+          "author": "Rom\u0101ns Pota\u0161ovs",
+          "authored_at": "2026-07-04T12:49:28+03:00",
+          "commit": "902b819669875b988a8c651a3911dd765ad422e7",
+          "email": "justgook@gmail.com",
+          "subject": "\ud83d\udea7(view:tooltip): add tooltip ui service"
+        },
+        "git_blob": "e994df4c94e86f193a8b09d89afaed40c7c94108",
+        "history_authors": [
+          "Rom\u0101ns Pota\u0161ovs <justgook@gmail.com>"
+        ],
+        "history_count": 2,
+        "latest_change": {
+          "author": "Rom\u0101ns Pota\u0161ovs",
+          "authored_at": "2026-07-05T19:13:56+03:00",
+          "commit": "40dbaf589d098fb38f319866d3fe6705dc6ce817",
+          "email": "justgook@gmail.com",
+          "subject": "\ud83d\udea7(view:director): add autocomplete"
+        },
+        "line_count": 515,
+        "path": "ui-plugins/tooltip.js",
+        "scan_signals": [],
+        "sha256": "1622fbc5d8c51fbaff9a9bfb162d8cbdd84f4330d5fb68080819651a668bb3d0",
+        "source_url": "https://github.com/justgook/gamectl/blob/ca48dbf190aa66e948a04d2f82a624295b7b6464/ui-plugins/tooltip.js",
+        "static_imports": [],
+        "working_tree_matches_HEAD": true
+      }
+    ],
+    "upstream": []
+  }
+}
