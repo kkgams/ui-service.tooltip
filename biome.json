@@ -1,0 +1,15 @@
+{
+    "files": {
+        "includes": ["src/ui-plugins/tooltip.js", "biome.json"]
+    },
+    "formatter": {
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "lineWidth": 120
+    },
+    "javascript": {
+        "formatter": {
+            "semicolons": "asNeeded"
+        }
+    }
+}

@@ -46,7 +46,10 @@ function normalizeAnchor(raw) {
     if (kind === "aabb") return normalizeAabb(raw, "anchor")
     if (kind === "mouse") return { kind }
     if (kind === "caret") {
-        assert(raw.input instanceof HTMLInputElement || raw.input instanceof HTMLTextAreaElement, "ui.tooltip anchor.input must be a text input")
+        assert(
+            raw.input instanceof HTMLInputElement || raw.input instanceof HTMLTextAreaElement,
+            "ui.tooltip anchor.input must be a text input",
+        )
         const rect = raw.input.getBoundingClientRect()
         return { kind: "aabb", x: rect.left, y: rect.top, width: rect.width, height: rect.height }
     }
@@ -65,7 +68,12 @@ function expandAabb(aabb, padding) {
 }
 
 function pointerInsideAabb(event, aabb) {
-    return event.clientX >= aabb.x && event.clientX <= aabb.x + aabb.width && event.clientY >= aabb.y && event.clientY <= aabb.y + aabb.height
+    return (
+        event.clientX >= aabb.x &&
+        event.clientX <= aabb.x + aabb.width &&
+        event.clientY >= aabb.y &&
+        event.clientY <= aabb.y + aabb.height
+    )
 }
 
 function textForSearch(item) {
@@ -128,8 +136,10 @@ export class TooltipManager extends HTMLElement {
         this.nextTooltipId = 1
         this.api = {
             open: async (input) => await this.open(parseOptions(input)),
-            contextMenu: async (input) => encodeOK(await this.openSelectable({ ...parseOptions(input), type: "context-menu" })),
-            autocomplete: async (input) => encodeOK(await this.openSelectable({ searchable: true, ...parseOptions(input), type: "autocomplete" })),
+            contextMenu: async (input) =>
+                encodeOK(await this.openSelectable({ ...parseOptions(input), type: "context-menu" })),
+            autocomplete: async (input) =>
+                encodeOK(await this.openSelectable({ searchable: true, ...parseOptions(input), type: "autocomplete" })),
             tip: async (input) => encodeOK(this.openTip({ ...parseOptions(input), type: "tip" })),
             close: async (input) => encodeOK(this.close(parseOptions(input))),
             closeAll: async () => encodeOK(this.closeAll()),
@@ -180,7 +190,9 @@ export class TooltipManager extends HTMLElement {
             top.close({ ok: false, cancelled: true, reason })
             return { closed: 1 }
         }
-        const tooltip = Array.from(this.querySelectorAll("view-tooltip")).find((entry) => entry.tooltipId === Number(id))
+        const tooltip = Array.from(this.querySelectorAll("view-tooltip")).find(
+            (entry) => entry.tooltipId === Number(id),
+        )
         if (!tooltip) return { closed: 0 }
         tooltip.close({ ok: false, cancelled: true, reason })
         return { closed: 1 }
@@ -188,7 +200,9 @@ export class TooltipManager extends HTMLElement {
 
     closeAll(reason = "close-all") {
         const tooltips = Array.from(this.querySelectorAll("view-tooltip"))
-        tooltips.forEach((tooltip) => tooltip.close({ ok: false, cancelled: true, reason }))
+        tooltips.forEach((tooltip) => {
+            tooltip.close({ ok: false, cancelled: true, reason })
+        })
         return { closed: tooltips.length }
     }
 }
@@ -238,7 +252,11 @@ export class ViewTooltip extends HTMLElement {
 
     openTip(options = {}) {
         this.anchor = normalizeAnchor(options.anchor || { kind: "point", x: 0, y: 0 })
-        this.track = options.track ? normalizeAabb(options.track, "track") : this.anchor.kind === "aabb" ? this.anchor : null
+        this.track = options.track
+            ? normalizeAabb(options.track, "track")
+            : this.anchor.kind === "aabb"
+              ? this.anchor
+              : null
         if (this.track) this.track = expandAabb(this.track, options.trackPadding || 0)
         this.closeWhenPointerLeavesTrack = options.closeWhenPointerLeavesTrack !== false && Boolean(this.track)
         this.followPointer = options.followPointer === true || this.anchor.kind === "mouse"
@@ -248,7 +266,11 @@ export class ViewTooltip extends HTMLElement {
         assert(Number.isFinite(this.pointerOffsetY), "ui.tooltip pointerOffsetY must be a finite number")
         this.renderTip(options)
         this.position(options)
-        this.addGlobalListeners({ pointerMove: this.closeWhenPointerLeavesTrack || this.followPointer, pointerDown: false, keyDown: options.closeOnEscape !== false })
+        this.addGlobalListeners({
+            pointerMove: this.closeWhenPointerLeavesTrack || this.followPointer,
+            pointerDown: false,
+            keyDown: options.closeOnEscape !== false,
+        })
         const duration = Number(options.duration || 0)
         if (duration > 0) window.setTimeout(() => this.close({ ok: true, reason: "duration" }), duration)
     }
@@ -262,7 +284,11 @@ export class ViewTooltip extends HTMLElement {
         this.closeOnOutsidePointer = options.closeOnOutsidePointer !== false
         this.renderSelectable(options)
         this.position(options)
-        this.addGlobalListeners({ pointerMove: false, pointerDown: this.closeOnOutsidePointer, keyDown: options.closeOnEscape !== false })
+        this.addGlobalListeners({
+            pointerMove: false,
+            pointerDown: this.closeOnOutsidePointer,
+            keyDown: options.closeOnEscape !== false,
+        })
         if (options.focusOnOpen !== false) this.focusInitialElement()
     }
 
@@ -317,7 +343,9 @@ export class ViewTooltip extends HTMLElement {
     }
 
     applyFilter() {
-        this.filteredItems = this._query ? this.items.filter((item) => textForSearch(item).includes(this._query)) : this.items.slice()
+        this.filteredItems = this._query
+            ? this.items.filter((item) => textForSearch(item).includes(this._query))
+            : this.items.slice()
         const firstEnabled = this.filteredItems.findIndex((item) => !item.disabled)
         this.selectedIndex = firstEnabled
         this.renderMenuItems()
@@ -387,7 +415,8 @@ export class ViewTooltip extends HTMLElement {
             this.close({ ok: false, cancelled: true, reason: "pointer-left-track" })
             return
         }
-        if (this.followPointer) this.positionAtPoint(event.clientX + this.pointerOffsetX, event.clientY + this.pointerOffsetY)
+        if (this.followPointer)
+            this.positionAtPoint(event.clientX + this.pointerOffsetX, event.clientY + this.pointerOffsetY)
     }
 
     handleKeyDown(event) {
@@ -420,9 +449,9 @@ export class ViewTooltip extends HTMLElement {
     }
 
     focusableElements() {
-        return Array.from(this.querySelectorAll('input[data-element="tooltip-search"], button[role="menuitem"]')).filter(
-            (element) => !element.disabled && !element.hidden,
-        )
+        return Array.from(
+            this.querySelectorAll('input[data-element="tooltip-search"], button[role="menuitem"]'),
+        ).filter((element) => !element.disabled && !element.hidden)
     }
 
     moveFocus(delta) {
@@ -442,10 +471,13 @@ export class ViewTooltip extends HTMLElement {
     }
 
     moveSelection(delta) {
-        const enabled = this.filteredItems.map((item, index) => ({ item, index })).filter((entry) => !entry.item.disabled)
+        const enabled = this.filteredItems
+            .map((item, index) => ({ item, index }))
+            .filter((entry) => !entry.item.disabled)
         if (!enabled.length) return
         const currentEnabledIndex = enabled.findIndex((entry) => entry.index === this.selectedIndex)
-        const nextEnabledIndex = currentEnabledIndex < 0 ? 0 : (currentEnabledIndex + delta + enabled.length) % enabled.length
+        const nextEnabledIndex =
+            currentEnabledIndex < 0 ? 0 : (currentEnabledIndex + delta + enabled.length) % enabled.length
         this.selectedIndex = enabled[nextEnabledIndex].index
         this.renderMenuItems()
     }
